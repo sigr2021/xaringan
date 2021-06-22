@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Présentez vos travaux en Markdown</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="ÉCOLE THÉMATIQUE SIGR" />
+    <meta name="author" content="Lambert, Giraud, Ysebaert" />
+    <meta name="date" content="2021-06-22" />
+    <script src="Xaringan_files/htmlwidgets/htmlwidgets.js"></script>
+    <script src="Xaringan_files/jquery/jquery.min.js"></script>
+    <link href="Xaringan_files/leaflet/leaflet.css" rel="stylesheet" />
+    <script src="Xaringan_files/leaflet/leaflet.js"></script>
+    <link href="Xaringan_files/leafletfix/leafletfix.css" rel="stylesheet" />
+    <script src="Xaringan_files/proj4/proj4.min.js"></script>
+    <script src="Xaringan_files/Proj4Leaflet/proj4leaflet.js"></script>
+    <link href="Xaringan_files/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
+    <script src="Xaringan_files/leaflet-binding/leaflet.js"></script>
+    <link href="Xaringan_files/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="Xaringan_files/datatables-binding/datatables.js"></script>
+    <link href="Xaringan_files/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="Xaringan_files/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="Xaringan_files/dt-core/js/jquery.dataTables.min.js"></script>
+    <link href="Xaringan_files/crosstalk/css/crosstalk.css" rel="stylesheet" />
+    <script src="Xaringan_files/crosstalk/js/crosstalk.min.js"></script>
+    <link href="Xaringan_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="Xaringan_files/tile-view/tile-view.js"></script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"be51dc6209ca4d3aab5ef8354347aa6e","expires":1}</script>
+    <script src="Xaringan_files/himalaya/himalaya.js"></script>
+    <script src="Xaringan_files/js-cookie/js.cookie.js"></script>
+    <link href="Xaringan_files/editable/editable.css" rel="stylesheet" />
+    <script src="Xaringan_files/editable/editable.js"></script>
+    <script src="Xaringan_files/fabric/fabric.min.js"></script>
+    <link href="Xaringan_files/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="Xaringan_files/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link href="Xaringan_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="Xaringan_files/panelset/panelset.js"></script>
+    <script src="Xaringan_files/mark.js/mark.min.js"></script>
+    <link href="Xaringan_files/xaringanExtra-search/search.css" rel="stylesheet" />
+    <script src="Xaringan_files/xaringanExtra-search/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Présentez vos travaux en Markdown
+## <em>Xaringan</em> et <em>Xaringanthemer</em>
+### ÉCOLE THÉMATIQUE SIGR
+### Lambert, Giraud, Ysebaert
+### 2021-06-22
+
+---
+
+
+
+
+
+
+class: center
+background-image: url(img/5dkw6g.jpg)
+background-size: contain
+
+---
+
+# Les pour et les contre
+
+## Avantages
+
+- Tout se fait dans Rstudio
+- Très adapté pour présenter du code
+- Fichier texte léger facile à versionner (Github)
+- Format web facile à partager (via Github ou Gitlab)
+- Incite au partage public
+
+--
+
+## Inconvéniants
+
+- Prise en main compliquée
+- Il faut changer d'habitudes de travail
+- Si on connait un peu le html et le CSS, ça aide
+
+---
+class: center
+
+&lt;video controls src="img/presentation.mp4" height ="75%"&gt;&lt;/video&gt;
+
+---
+
+# Xaringan
+
+Le package **xaringan** (Xie, 2021) est une extension R Markdown basée sur la bibliothèque JavaScript **remark.js** (https://remarkjs.com) pour générer des présentations HTML5 plutôt cool. 
+
+Le nom "xaringan" vient de Sharingan (Oeil Copieur Tournoyant) dans le manga et l'anime japonais "Naruto"
+
+&lt;img src ="img/naruto.webp"&gt;&lt;/img&gt;
+
+Reference : [https://yihui.org/en/2017/08/why-xaringan-remark-js/](https://yihui.org/en/2017/08/why-xaringan-remark-js/)
+
+---
+class: center
+
+&lt;video controls src="img/presentation2.mp4" height ="75%"&gt;&lt;/video&gt;
+
+---
+
+# Structure d'un document xaringan
+
+
+```r
+---
+title: "Presentation Ninja"
+subtitle: "with xaringan"
+author: "Yihui Xie"
+date: "2016/12/12"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+One slide.
+
+---
+
+Another slide.
+```
+
+---
+
+# Paramétrer la présentation (entête yaml)
+
+**seal** : pour désactiver la diapositive de titre (et donc pour en créer une personnalisée)
+
+**self_contained: true**  : compliler la présentation dans un fichier unique (plus facile à partager ou passer d'un ordinateur à l'autre)
+
+**chakra: libs/remark-latest.min.js** : télécharger la librairie *remark-latest.min.js* et a lier manuellement permet de travailler et présenter offline.
+
+**autoplay: 30000** : permet de défilement automatique des slides. Ici, toutes les 30 secondes
+
+**countIncrementalSlides: true** : affiche les numéros des pages au format n/N
+
+**ratio: 16:9** : permet de définir la taille de la présentation. *Largeur:hauteur*
+
+**etc..**
+
+---
+
+# L'entête de cette présentation
+
+
+```r
+---
+title: "Présentez vos travaux en Markdown"
+subtitle: "*Xaringan* et *Xaringanthemer*"  
+author: 
+  - "ÉCOLE THÉMATIQUE SIGR"
+  - "Lambert, Giraud, Ysebaert"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    chakra: libs/remark-latest.min.js
+    self_contained: false
+    css: ["xaringan-themer.css", "extra.css"]
+    nature:
+      slideNumberFormat: "%current%"
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+```
+
+---
+
+# Gestion des diapositives
+
+Pour séparer les diapositives, on utilise **trois tirets ---**.
+
+Pour ajouter des éléments de façon incrémentielle dans une diapositive, on utiise **deux tirets --**.
+
+
+```r
+---
+  
+# Titre de la diapo
+
+text text text text.....
+
+--
+
+Nouvel élément
+
+--
+
+encore un élement
+
+---
+
+# Nouvelle diapo
+```
+
+---
+
+# Des raccourcis clavier hyper utiles
+
+### P (presentation mode)
+
+### F (full screen)
+
+### C (clone slides to a new window)
+
+### B (black out)
+
+### M (mirror the slide)
+
+### H (help)
+
+???
+
+Mes notes ici : parler des raccourcis clavier ^^ 
+
+Pour ajouter des notes, on utilise `???`
+
+---
+class: inverse center middle
+
+# Présenter du code
+
+---
+
+# Présenter du code
+
+
+Pour afficher du code, on l'écrit dans un chunk {r, eval= FALSE}
+
+L'option highlightLines: true dans nature va surligner les lignes de code qui commencent par *, sont entourées de doubles accolades {{ }}, ou ont des commentaires en fn de ligne #&lt;&lt;:
+
+--
+
+
+```r
+mtq &lt;- mf_get_mtq()
+mf_map(mtq)
+mf_map(mtq, var = "POP", type = "prop")
+mf_map(mtq, var = "MED", type = "choro")
+mf_map(mtq, var = "STATUS", type = "typo")
+```
+
+---
+
+# Présenter du code
+
+Pour afficher du code, on l'écrit dans un chunk {r, eval= FALSE}
+
+L'option highlightLines: true dans nature va surligner les lignes de code qui commencent par *, sont entourées de doubles accolades {{ }}, ou ont des commentaires en fn de ligne #&lt;&lt;:
+
+
+```r
+*mtq &lt;- mf_get_mtq()
+mf_map(mtq)
+mf_map(mtq, var = "POP", type = "prop")
+mf_map(mtq, var = "MED", type = "choro")
+mf_map(mtq, var = "STATUS", type = "typo")
+```
+
+---
+
+# Présenter du code
+
+Pour afficher du code, on l'écrit dans un chunk {r, eval= FALSE}
+
+L'option highlightLines: true dans nature va surligner les lignes de code qui commencent par *, sont entourées de doubles accolades {{ }}, ou ont des commentaires en fn de ligne #&lt;&lt;:
+
+
+```r
+mtq &lt;- mf_get_mtq()
+*mf_map(mtq)
+mf_map(mtq, var = "POP", type = "prop")
+mf_map(mtq, var = "MED", type = "choro")
+mf_map(mtq, var = "STATUS", type = "typo")
+```
+
+---
+
+# Présenter du code
+
+Pour afficher du code, on l'écrit dans un chunk {r, eval= FALSE}
+
+L'option highlightLines: true dans nature va surligner les lignes de code qui commencent par *, sont entourées de doubles accolades {{ }}, ou ont des commentaires en fn de ligne #&lt;&lt;:
+
+
+```r
+mtq &lt;- mf_get_mtq()
+mf_map(mtq)
+*mf_map(mtq, var = "POP", type = "prop")
+*mf_map(mtq, var = "MED", type = "choro")
+*mf_map(mtq, var = "STATUS", type = "typo")
+```
+
+---
+
+### Il n'y a pas que R dans la vie, il y a javascript aussi
+
+#### Code R
+
+
+```r
+ggplot(gapminder) +
+  aes(x = gdpPercap, y = lifeExp, size = pop, color = country) +
+  geom_point() +
+  facet_wrap(~year)
+```
+
+#### JavaScript
+
+```js
+var fun = function lang(l) {
+  dateformat.i18n = require('./lang/' + l)
+  return true;
+}
+```
+
+---
+class: inverse center middle
+
+# Les textes
+
+---
+
+# Big Topic or Inverse Slides `#`
+
+## Slide Headings `##`
+
+### Sub-slide Headings `###`
+
+#### Bold Call-Out `####`
+
+This is a normal paragraph text. Only use header levels 1-4.
+
+##### Possible, but not recommended `#####`
+
+###### Definitely don't use h6 `######`
+
+---
+class: center
+
+## **gras**
+
+`**gras**`
+
+## *italic* 
+
+`*italic*`
+
+## ~~barré~~
+
+`~~barré~~`
+
+## &lt;ins&gt;souligné&lt;/ins&gt;
+
+`&lt;ins&gt;souligné&lt;/ins&gt;`
+
+---
+
+### Citations
+
+&gt; This is a blockquote following a header.
+&gt;
+&gt; When something is important enough, you do it even if the odds are not in your favor.
+
+```
+&gt; This is a blockquote following a header.
+&gt;
+&gt; When something is important enough, you do it even if the odds are not in your favor.
+```
+
+### Notes
+
+.note[`.note[xxx] permet d'ajouter une note avec un style spécifique`]
+
+### Liens
+
+
+```r
+[texte à afficher](http://lien_vers_la_page.html)
+```
+
+---
+class: inverse center middle
+
+# Les classes
+
+---
+### ---&lt;br/&gt;(defaut)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nulla nisi, lacinia quis dapibus ut, porta sit amet nisl. Nunc congue nisl vitae justo sagittis ultrices. Ut eu facilisis sem. Vestibulum blandit elementum nisi eu euismod. Nullam vitae tortor quis turpis sodales suscipit fermentum non ipsum. Etiam sodales justo eu gravida dictum. Cras non lectus id justo imperdiet pretium quis ut eros. Donec gravida ac arcu ut aliquet.
+
+Mauris consequat euismod enim ut iaculis. Morbi condimentum rutrum justo, non sollicitudin augue. Praesent lobortis arcu vel lorem ullamcorper, et efficitur erat bibendum. Proin ullamcorper lectus quis nibh faucibus, et vestibulum augue bibendum. Nam venenatis dui neque, non egestas lectus dignissim a. Nulla cursus elementum arcu, eu eleifend nunc ullamcorper sit amet. In porttitor enim at bibendum sodales. Donec vel enim rutrum, porta ipsum at, tristique eros. Sed eu leo ac lorem sollicitudin molestie ac vel ipsum.
+
+---
+class: center
+
+### ---&lt;br/&gt;class: center
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nulla nisi, lacinia quis dapibus ut, porta sit amet nisl. Nunc congue nisl vitae justo sagittis ultrices. Ut eu facilisis sem. Vestibulum blandit elementum nisi eu euismod. Nullam vitae tortor quis turpis sodales suscipit fermentum non ipsum. Etiam sodales justo eu gravida dictum. Cras non lectus id justo imperdiet pretium quis ut eros. Donec gravida ac arcu ut aliquet.
+
+Mauris consequat euismod enim ut iaculis. Morbi condimentum rutrum justo, non sollicitudin augue. Praesent lobortis arcu vel lorem ullamcorper, et efficitur erat bibendum. Proin ullamcorper lectus quis nibh faucibus, et vestibulum augue bibendum. Nam venenatis dui neque, non egestas lectus dignissim a. Nulla cursus elementum arcu, eu eleifend nunc ullamcorper sit amet. In porttitor enim at bibendum sodales. Donec vel enim rutrum, porta ipsum at, tristique eros. Sed eu leo ac lorem sollicitudin molestie ac vel ipsum.
+
+---
+class: right
+
+### ---&lt;br/&gt;class: right
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nulla nisi, lacinia quis dapibus ut, porta sit amet nisl. Nunc congue nisl vitae justo sagittis ultrices. Ut eu facilisis sem. Vestibulum blandit elementum nisi eu euismod. Nullam vitae tortor quis turpis sodales suscipit fermentum non ipsum. Etiam sodales justo eu gravida dictum. Cras non lectus id justo imperdiet pretium quis ut eros. Donec gravida ac arcu ut aliquet.
+
+Mauris consequat euismod enim ut iaculis. Morbi condimentum rutrum justo, non sollicitudin augue. Praesent lobortis arcu vel lorem ullamcorper, et efficitur erat bibendum. Proin ullamcorper lectus quis nibh faucibus, et vestibulum augue bibendum. Nam venenatis dui neque, non egestas lectus dignissim a. Nulla cursus elementum arcu, eu eleifend nunc ullamcorper sit amet. In porttitor enim at bibendum sodales. Donec vel enim rutrum, porta ipsum at, tristique eros. Sed eu leo ac lorem sollicitudin molestie ac vel ipsum.
+
+---
+class: middle
+
+### ---&lt;br/&gt;class: middle
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nulla nisi, lacinia quis dapibus ut, porta sit amet nisl. Nunc congue nisl vitae justo sagittis ultrices. Ut eu facilisis sem. Vestibulum blandit elementum nisi eu euismod. Nullam vitae tortor quis turpis sodales suscipit fermentum non ipsum. Etiam sodales justo eu gravida dictum. Cras non lectus id justo imperdiet pretium quis ut eros. Donec gravida ac arcu ut aliquet.
+
+Mauris consequat euismod enim ut iaculis. Morbi condimentum rutrum justo, non sollicitudin augue. Praesent lobortis arcu vel lorem ullamcorper, et efficitur erat bibendum. Proin ullamcorper lectus quis nibh faucibus, et vestibulum augue bibendum. Nam venenatis dui neque, non egestas lectus dignissim a. Nulla cursus elementum arcu, eu eleifend nunc ullamcorper sit amet. In porttitor enim at bibendum sodales. Donec vel enim rutrum, porta ipsum at, tristique eros. Sed eu leo ac lorem sollicitudin molestie ac vel ipsum.
+
+---
+class: bottom
+
+### ---&lt;br/&gt;class: bottom
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nulla nisi, lacinia quis dapibus ut, porta sit amet nisl. Nunc congue nisl vitae justo sagittis ultrices. Ut eu facilisis sem. Vestibulum blandit elementum nisi eu euismod. Nullam vitae tortor quis turpis sodales suscipit fermentum non ipsum. Etiam sodales justo eu gravida dictum. Cras non lectus id justo imperdiet pretium quis ut eros. Donec gravida ac arcu ut aliquet.
+
+Mauris consequat euismod enim ut iaculis. Morbi condimentum rutrum justo, non sollicitudin augue. Praesent lobortis arcu vel lorem ullamcorper, et efficitur erat bibendum. Proin ullamcorper lectus quis nibh faucibus, et vestibulum augue bibendum. Nam venenatis dui neque, non egestas lectus dignissim a. Nulla cursus elementum arcu, eu eleifend nunc ullamcorper sit amet. In porttitor enim at bibendum sodales. Donec vel enim rutrum, porta ipsum at, tristique eros. Sed eu leo ac lorem sollicitudin molestie ac vel ipsum.
+
+---
+class: bottom right
+
+### ---&lt;br/&gt;class: bottom right
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nulla nisi, lacinia quis dapibus ut, porta sit amet nisl. Nunc congue nisl vitae justo sagittis ultrices. Ut eu facilisis sem. Vestibulum blandit elementum nisi eu euismod. Nullam vitae tortor quis turpis sodales suscipit fermentum non ipsum. Etiam sodales justo eu gravida dictum. Cras non lectus id justo imperdiet pretium quis ut eros. Donec gravida ac arcu ut aliquet.
+
+Mauris consequat euismod enim ut iaculis. Morbi condimentum rutrum justo, non sollicitudin augue. Praesent lobortis arcu vel lorem ullamcorper, et efficitur erat bibendum. Proin ullamcorper lectus quis nibh faucibus, et vestibulum augue bibendum. Nam venenatis dui neque, non egestas lectus dignissim a. Nulla cursus elementum arcu, eu eleifend nunc ullamcorper sit amet. In porttitor enim at bibendum sodales. Donec vel enim rutrum, porta ipsum at, tristique eros. Sed eu leo ac lorem sollicitudin molestie ac vel ipsum.
+
+
+---
+class: middle center
+
+### ---&lt;br/&gt;class: middle center
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nulla nisi, lacinia quis dapibus ut, porta sit amet nisl. Nunc congue nisl vitae justo sagittis ultrices. Ut eu facilisis sem. Vestibulum blandit elementum nisi eu euismod. Nullam vitae tortor quis turpis sodales suscipit fermentum non ipsum. Etiam sodales justo eu gravida dictum. Cras non lectus id justo imperdiet pretium quis ut eros. Donec gravida ac arcu ut aliquet.
+
+Mauris consequat euismod enim ut iaculis. Morbi condimentum rutrum justo, non sollicitudin augue. Praesent lobortis arcu vel lorem ullamcorper, et efficitur erat bibendum. Proin ullamcorper lectus quis nibh faucibus, et vestibulum augue bibendum. Nam venenatis dui neque, non egestas lectus dignissim a. Nulla cursus elementum arcu, eu eleifend nunc ullamcorper sit amet. In porttitor enim at bibendum sodales. Donec vel enim rutrum, porta ipsum at, tristique eros. Sed eu leo ac lorem sollicitudin molestie ac vel ipsum.
+
+---
+class: inverse middle center
+
+### ---&lt;br/&gt;class: inverse middle center
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nulla nisi, lacinia quis dapibus ut, porta sit amet nisl. Nunc congue nisl vitae justo sagittis ultrices. Ut eu facilisis sem. Vestibulum blandit elementum nisi eu euismod. Nullam vitae tortor quis turpis sodales suscipit fermentum non ipsum. Etiam sodales justo eu gravida dictum. Cras non lectus id justo imperdiet pretium quis ut eros. Donec gravida ac arcu ut aliquet.
+
+Mauris consequat euismod enim ut iaculis. Morbi condimentum rutrum justo, non sollicitudin augue. Praesent lobortis arcu vel lorem ullamcorper, et efficitur erat bibendum. Proin ullamcorper lectus quis nibh faucibus, et vestibulum augue bibendum. Nam venenatis dui neque, non egestas lectus dignissim a. Nulla cursus elementum arcu, eu eleifend nunc ullamcorper sit amet. In porttitor enim at bibendum sodales. Donec vel enim rutrum, porta ipsum at, tristique eros. Sed eu leo ac lorem sollicitudin molestie ac vel ipsum.
+
+---
+
+### className[...]
+
+On peut également attribuer des classes à n'importe quel élément d'une diapositive. La syntaxe est **`.className[content]`**. Il s'agit d'une fonction très puissante de remark.js. Cela permet de donner un style à n'importe quel élément d'une diapositive par le biais de CSS. Il y a quelques classes de contenu intégrées : **`.left[]`**, **`.right[]`** et **`.center[]`**.
+
+&lt;br/&gt;
+
+.left[**Contenu aligné à gauche**]
+
+&lt;br/&gt;&lt;br/&gt;
+
+.center[**Contenu centré**]
+
+&lt;br/&gt;&lt;br/&gt;
+
+.right[**Contenu aligné à droite**]
+
+
+---
+
+### pull-left[...] et pull-right[...] (50% - 50%)
+
+.pull-left[Vivamus sed erat facilisis, rhoncus justo nec, semper tellus. Donec blandit tempor erat in finibus. Nullam nisl orci, dictum a sagittis id, lacinia vitae leo. Donec in cursus purus. Duis et tellus ac lectus sollicitudin tempus. Praesent sem velit, tincidunt in placerat vel, fermentum eget orci. Donec sed velit vulputate, congue augue ut, rutrum dui. In nec venenatis diam. Sed non ligula neque. Donec in lectus semper, convallis tellus nec, elementum sapien. Curabitur facilisis libero porttitor ante placerat, quis accumsan eros cursus.]
+
+.pull-right[Vivamus vitae odio in nisi porttitor egestas. Sed auctor diam id enim porta, ac eleifend lorem iaculis. Duis sed nibh faucibus, volutpat est eu, euismod augue. Proin interdum enim vitae leo tincidunt fringilla. Nulla rhoncus sapien sem, eu rhoncus justo vulputate pellentesque. Proin sit amet turpis mauris. Nam venenatis augue id enim efficitur gravida. Phasellus lobortis nunc ut ultrices semper. Quisque malesuada, lectus ac fringilla commodo, tortor dui ornare lectus, sit amet facilisis mi odio id tellus. Nulla sed imperdiet risus. Nullam ultrices urna fermentum pharetra mollis. Nam congue sem eu dapibus consectetur. Nullam sed ex luctus, porttitor justo eget, placerat elit. Nullam sit amet tincidunt urna, ac venenatis sapien. Pellentesque tempus felis massa, rhoncus elementum eros pulvinar sit amet. Pellentesque ut nulla sit amet massa porta placerat.]
+
+
+---
+
+### left-column[...] et right-column[...] (20% - 80%)
+
+.left-column[
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel orci maximus, lobortis augue et, efficitur velit. Nam quis finibus urna. Cras gravida vestibulum euismod.]
+
+.right-column[Vivamus vitae odio in nisi porttitor egestas. Sed auctor diam id enim porta, ac eleifend lorem iaculis. Duis sed nibh faucibus, volutpat est eu, euismod augue. Proin interdum enim vitae leo tincidunt fringilla. Nulla rhoncus sapien sem, eu rhoncus justo vulputate pellentesque. Proin sit amet turpis mauris. Nam venenatis augue id enim efficitur gravida. Phasellus lobortis nunc ut ultrices semper. Quisque malesuada, lectus ac fringilla commodo, tortor dui ornare lectus, sit amet facilisis mi odio id tellus. Nulla sed imperdiet risus. Nullam ultrices urna fermentum pharetra mollis. Nam congue sem eu dapibus consectetur. Nullam sed ex luctus, porttitor justo eget, placerat elit. Nullam sit amet tincidunt urna, ac venenatis sapien. Pellentesque tempus felis massa, rhoncus elementum eros pulvinar sit amet. Pellentesque ut nulla sit amet massa porta placerat.]
+
+---
+
+### Créez vos propres classes
+
+Il est possible de creer ses propres styles. Ici, myclass[] est associé au style css .myclass{} dans le fichier local extra.css. En résumé, les possibilités de personnalisation sont infinies. 
+
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+
+.center[.myclass[Mon nouveau style]]
+
+---
+class: inverse center middle
+
+# Les layout
+
+```
+---
+layout: true
+# Titre de la partie
+&lt;hr/&gt;
+### élément récurrent
+```
+
+---
+layout: true
+# Titre de la partie
+&lt;hr/&gt;
+### élément récurrent
+
+---
+
+**Voici un premier contenu**
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum varius dui eget tortor dignissim sollicitudin. Aliquam tincidunt pharetra magna quis rutrum. Nulla consectetur sem justo, eu semper ligula feugiat quis. Nunc tempor feugiat odio a rhoncus. Maecenas eleifend id orci eget vehicula. Etiam vel volutpat dolor. Quisque venenatis, ligula nec consequat posuere, odio sem consequat tellus, eu finibus tellus dolor quis urna.
+
+---
+
+**Et voilà un second contenu**
+
+In molestie neque quis quam finibus vestibulum. Donec cursus mi quam, at facilisis justo bibendum at. Proin semper ligula eget tempor feugiat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse ornare augue velit. In tempus lobortis tempus. Nullam pretium nunc ac ex varius laoreet. Quisque malesuada consequat pulvinar. Duis at sem id ante dapibus faucibus. Vivamus a facilisis odio. Etiam sit amet euismod lacus, tincidunt scelerisque tortor. Mauris eleifend rutrum vehicula. Etiam consectetur ac mi sit amet venenatis.
+
+---
+layout: false
+class: inverse center middle
+
+# Ajouter des images
+```
+Markdown ou html ?
+```
+
+
+---
+class: center
+
+### Intégrer une image large (syntaxe Markdown)
+
+`![](img/waldesmuller.jpg)`
+
+![](img/waldesmuller.jpg)
+
+
+---
+class: center
+
+### Intégrer une image large (syntaxe Markdown)
+
+&lt;img src="img/imgrmd.png" height="500px" /&gt;
+
+---
+class: center
+
+### Intégrer une image (snytaxe html)
+
+&lt;img src="img/waldesmuller.jpg" height="450px"/&gt;
+
+.note[`&lt;img src="img/waldesmuller.jpg" height="450px"/&gt;`]
+
+
+---
+class: center
+
+### Deux images en vis à vis
+
+.pull-left[
+![](img/DuR91YyVAAArM8e.jpg)
+]
+
+
+.pull-right[
+![](img/DuR92f4U8AISePY.jpg)
+]
+
+.footnote[&lt;center&gt;`.pull-left[] &amp; .pull-right[]`]
+
+
+---
+class: center
+
+.left-column[.right[
+&lt;br/&gt;&lt;br/&gt;** Une carte et une légende**&lt;br/&gt;&lt;br/&gt;
+Les Feuilletons de Ptolémée : Le Scandale de Mercator. Premier Feuilleton de Ptolémée, consacré à la projection de Gérard Mercator : vous ne verrez plus la carte de votre salon de la même manière !&lt;br/&gt;&lt;br/&gt;Source : les Savoirs ambulants, 2020]]
+
+.right-column[![](img/mercator.jpeg)]
+
+.footnote[&lt;center&gt;`.left-column[] &amp; .right-column[]`]
+
+---
+class: center middle
+
+background-image: url(img/kangnido.png)
+background-size: cover
+
+### &lt;span style="color: #08335c"&gt;background-image: url(img/kangnido.png)
+background-size: cover&lt;/span&gt;
+
+---
+class: center middle
+
+background-image: url(img/kangnido.png)
+background-size: contain
+
+### &lt;span style="color: #08335c"&gt;background-image: url(img/kangnido.png)
+background-size: contain&lt;/span&gt;
+
+
+---
+class: center
+
+background-image: url(img/map.gif)
+background-size: contain
+
+### &lt;span style="color: white"&gt;Gif animé&lt;/span&gt;
+
+---
+
+![](img/maillage3.png)
+
+--
+
+![](img/maillage4.png)
+
+--
+
+![](img/maillage6.png)
+
+---
+class: inverse center middle
+
+# Dans une page web, il est possible d'intégrer tout ce qu'il est possible d'intégrer dans une page web&lt;br/&gt;&lt;br/&gt;🤔
+
+---
+class: center
+
+## Vidéo
+
+&lt;iframe width="896" height="504" src="https://www.youtube.com/embed/kRsF9S8JqBI" title="Waldo Tobler, Animated Cartography of Detroit, ca. 1970 frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+---
+class: center
+
+## iframe
+
+&lt;iframe src="https://sigr2020.sciencesconf.org/" height="500" width="1000"&lt;/iframe&gt;
+
+
+---
+class: center
+
+## Leaflet
+
+
+```r
+library(leaflet)
+leaflet() %&gt;% addTiles() %&gt;% setView(-1.2489695165222745, 45.95151749498196, zoom = 17)
+```
+
+<div id="htmlwidget-171329040c30ff6d1fab" style="width:100%;height:360px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-171329040c30ff6d1fab">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]}],"setView":[[45.951517494982,-1.24896951652227],17,[]]},"evals":[],"jsHooks":[]}</script>
+
+---
+class: center
+
+## Javascript
+
+&lt;div id="observablehq-map-a10e1d75"&gt;&lt;/div&gt;
+&lt;div id="observablehq-viewof-k-a10e1d75"&gt;&lt;/div&gt;
+
+&lt;script type="module"&gt;
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+import define from "https://api.observablehq.com/@neocartocnrs/world-elevation-line-map.js?v=3";
+new Runtime().module(define, name =&gt; {
+  if (name === "map") return new Inspector(document.querySelector("#observablehq-map-a10e1d75"));
+  if (name === "viewof k") return new Inspector(document.querySelector("#observablehq-viewof-k-a10e1d75"));
+  return ["drawLine"].includes(name);
+});
+&lt;/script&gt;
+
+---
+class: inverse center middle
+
+## Et bien sûr, toutes les sorties générées directement en R via le code inclus dans la présentation
+
+---
+
+# Tableaux
+
+
+```r
+tibble::as_tibble(mtcars)
+```
+
+```
+## # A tibble: 32 x 11
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+## # … with 22 more rows
+```
+
+---
+
+# Tableaux
+
+
+```r
+knitr::kable(head(mtcars), format = 'html')
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; mpg &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; cyl &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; disp &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; hp &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; drat &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; wt &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; qsec &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; vs &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; am &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; gear &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; carb &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mazda RX4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.620 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mazda RX4 Wag &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.875 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Datsun 710 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 108 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 93 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.85 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.320 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.61 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Hornet 4 Drive &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 258 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.215 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19.44 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Hornet Sportabout &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 360 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 175 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.440 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Valiant &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 225 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 105 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.76 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.460 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 20.22 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# Tableaux
+
+
+```r
+DT::datatable(head(mtcars), fillContainer = FALSE, options = list(pageLength = 4))
+```
+
+<div id="htmlwidget-b9a0fd43e26135cb79cc" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b9a0fd43e26135cb79cc">{"x":{"filter":"none","fillContainer":false,"data":[["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant"],[21,21,22.8,21.4,18.7,18.1],[6,6,4,6,8,6],[160,160,108,258,360,225],[110,110,93,110,175,105],[3.9,3.9,3.85,3.08,3.15,2.76],[2.62,2.875,2.32,3.215,3.44,3.46],[16.46,17.02,18.61,19.44,17.02,20.22],[0,0,1,1,0,1],[1,1,1,0,0,0],[4,4,4,3,3,3],[4,4,1,1,2,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mpg<\/th>\n      <th>cyl<\/th>\n      <th>disp<\/th>\n      <th>hp<\/th>\n      <th>drat<\/th>\n      <th>wt<\/th>\n      <th>qsec<\/th>\n      <th>vs<\/th>\n      <th>am<\/th>\n      <th>gear<\/th>\n      <th>carb<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+# Graphiques
+
+
+```r
+library(ggplot2)
+(g &lt;- ggplot(mpg) + aes(hwy, cty, color = class) + geom_point())
+```
+
+&lt;img src="Xaringan_files/figure-html/plot-example-1.png" width="100%" /&gt;
+
+---
+
+# Cartes
+
+
+```r
+library(mapsf)
+# import the sample data set
+mtq &lt;- mf_get_mtq()
+# set theme
+mf_theme("dark")
+# plot administrative status
+mf_map(
+  x = mtq, 
+  var = "STATUS", type = "typo",pal = c("aquamarine4", "yellow3","wheat"), lwd = .5,
+  val_order = c("Prefecture","Sub-prefecture", "Simple municipality"),
+  leg_pos = "topright",leg_title = ""
+)
+# labels for a few  municipalities
+mf_label(x = mtq[mtq$STATUS != "Simple municipality",], var = "LIBGEO",
+         cex = 0.9, halo = TRUE, r = 0.15)
+# layout
+mf_layout(title = "Administrative Status", 
+credits = paste0("Sources: Insee and IGN, 2018\n",
+"mapsf ", 
+ackageVersion("mapsf")))
+```
+
+---
+
+# Cartes
+
+&lt;img src="Xaringan_files/figure-html/unnamed-chunk-15-1.png" width="100%" /&gt;
+
+---
+class: inverse center middle
+
+# Embellir et personnaliser les présentations
+
+---
+class: center middle
+
+## Option 1 : apprendre le CSS
+
+&lt;img src ="img/css.jpg" height = "80%"&gt;&lt;/img&gt;
+
+---
+class: left
+
+## Intégrer un ficher css
+
+
+```r
+title: "Faut-il se méfier des cartes ?"
+subtitle: "Spoil : oui !"
+author: "Nicolas Lambert"
+institute: "CNRS / UMS RIATE"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    chakra: libs/remark-latest.min.js
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+    css:
+      - default
+      - default-fonts 
+      - "libs/css/animate.min.css"
+*     - "libs/css/lambert.css"
+*     - "libs/css/lambert-font.css"
+    seal: false
+---
+```
+
+---
+class: center middle
+
+&lt;img src="img/prez1.png" height="550px"/&gt;
+
+.note[Exemple de page de garde personnalisée]
+
+---
+class: center middle
+
+&lt;img src="img/prez2.png" height="550px"/&gt;
+
+.note[Exemple de slide personnalisé]
+
+---
+class: center middle
+
+## Option 2 : xaringanthemer
+
+
+```r
+*library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#449ac2",
+  secondary_color = "#383838",
+  inverse_header_color = "#ffae00",
+  #background_image = "img/conception-fond-abstrait-blanc_23-2148825582.jpg"
+  )
+```
+
+---
+class: center middle
+
+## Option 2 : xaringanthemer
+
+&lt;img src ="img/example-rstudio-completion.gif" width = "80%"&gt;&lt;/img&gt;
+
+---
+class: center middle
+
+## Option 2 : xaringanthemer
+
+
+```r
+g + xaringanthemer::theme_xaringan(text_font_size = 16, title_font_size = 18) +
+  ggtitle("A Plot About Cars")
+```
+
+&lt;img src="Xaringan_files/figure-html/plot-example-themed-1.png" width="100%" /&gt;
+
+---
+class: inverse center, middle
+
+# Aller plus loin
+
+---
+class: center
+
+# xaringanExtra
+
+
+```r
+# install.packages("devtools")
+devtools::install_github("gadenbuie/xaringanExtra")
+```
+
+&gt; https://github.com/gadenbuie/xaringanExtra
+
+---
+
+## `Animate.css`
+
+Animate.css est une collection populaire d'animations CSS. 
+
+*use_animate_css()* est une fonction qui modifie automatiquement le CSS pour activer active l'animation entre les diapositives. 
+
+On peut télécharger et appeler manuellement le fichier css animate, ou bien l'appeler via le package *xaringanExtra* comme suit :
+
+
+```r
+{r xaringan-animate-css, echo=FALSE}
+xaringanExtra::use_animate_css()
+```
+
+`---
+class: inverse, center, middle, animated, bounceInDown
+`
+---
+class: center
+
+&lt;video controls src="img/animate.mp4" height ="65%"&gt;&lt;/video&gt;
+
+---
+
+
+
+## `xaringan-tile-view`
+
+### (Appuyer sur O pour Overview)
+
+
+```r
+{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+
+---
+
+
+
+## `xaringan-editable`
+
+
+```r
+{r xaringan-editable, echo=FALSE}
+xaringanExtra::use_editable(expires = 1)
+```
+
+## .can-edit.key-firstSlideTitle[Changez le titre de cette page]
+Hello, .can-edit[world], bienvenue à Oléron
+
+.can-edit.key-likes[
+- premier truc
+- deuxième truc
+]
+
+---
+
+
+
+## `xaringan-scribble`
+
+###(Appuyer sur S pour Scribble)
+
+
+```r
+{r xaringan-scribble, echo=FALSE}
+xaringanExtra::use_scribble()
+```
+
+---
+
+
+
+## `xaringan-spanelset`
+
+
+```r
+{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+---
+
+.panelset[
+.panel[.panel-name[R Code]
+
+```r
+library(mapsf)
+mtq &lt;- mf_get_mtq()
+mf_map(mtq,)
+mf_annotation(
+  x = c(711167.8, 1614764),
+  txt = "Look!\nImportant feature\nhere!",
+  pos = "bottomleft", cex = 1.2, font = 2,
+  halo = TRUE, s = 1.5
+)
+
+mf_annotation(
+  x = mtq[20, ],
+  txt = "This is less\nimportant",
+  cex = .7, font = 3, s = 1.3
+)
+```
+]
+.panel[.panel-name[Plot]
+&lt;img src="Xaringan_files/figure-html/unnamed-chunk-24-1.png" width="100%" /&gt;
+]
+.panel[.panel-name[Explanations]
+ILorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pulvinar vehicula ultricies. Etiam facilisis nunc non augue consectetur, at mattis tortor scelerisque. Aliquam aliquam metus lorem, id consequat odio semper vitae. Cras tellus ligula, aliquet in pulvinar a, tempor eget ipsum. Maecenas facilisis non orci id vestibulum. Vivamus pulvinar lacinia tincidunt. Cras mattis nunc vel velit dapibus tincidunt. Proin mattis leo velit, at finibus metus consectetur sit amet. Praesent molestie libero a urna dapibus, vitae pellentesque quam ultricies. Cras ligula mauris, facilisis id elit nec, lobortis semper augue. Cras at sem ac felis accumsan faucibus quis a ligula.
+
+Mauris sed metus vel arcu feugiat pulvinar. Nam ligula metus, sodales id dignissim eget, euismod vitae metus. Vestibulum fringilla libero ultricies ante egestas sollicitudin. Aenean velit turpis, tristique vel dui quis, convallis venenatis nisi. In ac elementum felis. Cras sit amet nunc lectus. Nullam volutpat porttitor lectus. Nulla facilisi. Aliquam molestie nisi vel neque sagittis, vitae lacinia mi feugiat. Aenean sed urna ligula. Phasellus ac viverra mauris
+]
+]
+
+---
+
+
+
+## `xaringan-Extra-search`
+
+### (Appuyer sur CTRL+F pour chercher)
+
+
+```r
+{` xaringanExtra-search, echo=FALSE}
+xaringanExtra::use_search(show_icon = TRUE)
+```
+
+
+---
+class: inverse center middle
+
+# À vous de jouer !
+
+
+---
+
+# À vous de jouer
+
+#### 1 - Créer une présentation xaringan et parametrez l'entête (nom, titre...)
+
+&gt; File &gt; new file &gt; R Markdown &gt; From template &gt; Ninja Themed Presentation
+
+#### 2- Ajoutez ou modifiez des éléments
+
+&gt; Une image, du code R et son résultat, du texte (vous pouvez reprendre les éléments de la veille)
+
+#### 3 - Personalisez le style avec xaringanthemer
+
+#### 4 - Essayez le paramètre *yolo = true * 😁 
+
+
+```r
+output:
+  xaringan::moon_reader:
+*  yolo: true
+```
+&gt; **Documentation** : https://bookdown.org/yihui/rmarkdown/xaringan.html
+
+---
+class: center middle
+
+# Merci 
+
+Slides créés avec les packages R
+
+[**xaringan**](https://github.com/yihui/xaringan) et [**xaringanthemer**](https://github.com/gadenbuie/xaringanthemer)
+
+grâce à [**remark.js**](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), et [**R Markdown**](https://rmarkdown.rstudio.com).
+
+&lt;br/&gt;&lt;br/&gt;
+
+.note[Nicolas Lambert, Ronan Ysebaert, Timothée Giraud, 2021]
+
+---
+class: inverse center middle
+
+# yolo = true
+
+😜 
+
+---
+class: center
+
+Inspiré par une demande de fonctionnalité aléatoire provenant d'un tweet de Karthik Ram, (Data Science, Berkeley) **Xaringan::moon_reader** fournit une option nommée **yolo** (un acronyme de "on ne vit qu'une fois"). Si vous lui attribuez la valeur **true**, une photo de Karl Broman (avec une moustache datée du 15 Nov 2002) sera insérée dans une diapositive aléatoire de votre présentation.
+
+&lt;img src ="img/karl.png" height ="375px"&gt;&lt;/img&gt;
+
+Karl Broman est statistician et professor à l'university du Wisconsin–Madison. 
+
+---
+class: center
+
+background-image: url("img/moustache.jpg")
+background-size: cover
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
