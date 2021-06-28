@@ -1025,7 +1025,16 @@ xaringanExtra::use_search(show_icon = TRUE)
 xaringanExtra::use_search(show_icon = TRUE)
 ````
 
+---
 
+
+## Compte à rebours
+
+```{r include=TRUE, warning=FALSE}
+# devtools::install_github("gadenbuie/countdown")
+library(countdown)
+countdown(minutes = 10, seconds = 00, top = 0)
+```
 ---
 class: inverse center middle
 
