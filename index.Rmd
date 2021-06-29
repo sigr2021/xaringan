@@ -60,7 +60,7 @@ background-size: contain
 
 --
 
-## Inconvéniants
+## Inconvénients
 
 - Prise en main compliquée
 - Il faut changer d'habitudes de travail
